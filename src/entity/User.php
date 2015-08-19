@@ -7,7 +7,6 @@ namespace Entity;
  *
  * @author  nelkenjosef <talking@nelkenjosef.de>
  * @version 1.0
- *
  */
 class User
 {
@@ -66,6 +65,8 @@ class User
     const GENDER_FEMALE_DISPLAY_VALUE = 'Mrs.';
 
     /**
+     * Builds name to display from name-parts
+     *
      * return string
      * @since 1.0
      */

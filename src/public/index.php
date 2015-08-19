@@ -4,18 +4,13 @@
  * File index.php
  *
  * @author  nelkenjosef <talking@nelkenjosef.de>
- * @version 1.2
+ * @version 1.3
  *
  */
 
-include '../entity/User.php';
-include '../mapper/User.php';
+include_once '../EntityManager.php';
 
-$db = new \PDO('sqlite:../../data/talking.sqlite');
-$userData = $db->query('SELECT * FROM users WHERE id = 1;')->fetch();
-
-$user = new Entity\User();
-$userMapper = new Mapper\User();
-$user = $userMapper->populate($userData, $user);
+$em = new EntityManager('../../data/talking.sqlite');
+$user = $em->getUserRepository()->findByOne(1);
 
 echo $user->assembleDisplayName() . PHP_EOL;

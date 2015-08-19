@@ -2,13 +2,11 @@
 
 namespace Mapper;
 
-use Entity;
 /**
  * Mapper for User
  *
  * @author  nelkenjosef <talking@nelkenjosef.de>
  * @version 1.0
- *
  */
 class User
 {
@@ -25,12 +23,14 @@ class User
     ];
 
     /**
+     * Gets data from DB and store in Entity
+     *
      * @param  array $data
-     * @param  Entity\User $user
-     * @return Entity\User
+     * @param  \Entity\User $user
+     * @return \Entity\User
      * @since  1.0
      */
-    public function populate($data, Entity\User $user)
+    public function populate($data, \Entity\User $user)
     {
         $mappingsFlipped = array_flip($this->mapping);
 
