@@ -6,7 +6,7 @@ namespace Entity;
  * Entity User
  *
  * @author  nelkenjosef <talking@nelkenjosef.de>
- * @version 1.0
+ * @version 1.1
  */
 class User
 {
@@ -39,6 +39,18 @@ class User
      * @since 1.0
      */
     private $namePrefix;
+
+    /**
+     * @var   array of \Repository\Post
+     * @since 1.1
+     */
+    private $posts = null;
+
+    /**
+     * @var   \Repository\Post
+     * @since 1.1
+     */
+    private $postRepository;
 
     /**
      * @var   int
@@ -182,5 +194,37 @@ class User
     public function getNamePrefix()
     {
         return $this->namePrefix;
+    }
+
+    /**
+     * @return array of \Entity\Post
+     * @since  1.1
+     */
+    public function getPosts()
+    {
+        if (is_null($this->posts)) {
+            $this->posts = $this->postRepository->findByUser($this);
+        }
+
+        return $this->posts;
+    }
+
+    /**
+     * @param  \Repository\Post $postRepository
+     * @return void
+     * @since  1.1
+     */
+    public function setPostRepository(\Repository\Post $postRepository)
+    {
+        $this->postRepository = $postRepository;
+    }
+
+    /**
+     * @return \Repository\Post
+     * @since  1.1
+     */
+    public function getPostRepository()
+    {
+        return $this->postRepository;
     }
 }

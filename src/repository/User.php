@@ -12,7 +12,7 @@ use Entity\User as UserEntity;
  * Repository for User
  *
  * @author  nelkenjosef <talking@nelkenjosef.de>
- * @version 1.2
+ * @version 1.3
  */
 class User
 {
@@ -61,7 +61,10 @@ class User
                          ->query('SELECT * FROM users WHERE id = ' . $id . ';')
                          ->fetch();
 
-        return $this->registerUserEntity($id, $this->mapper->populate($userData, new UserEntity()));
+        $newUser = new UserEntity();
+        $newUser->setPostRepository($this->em->getPostRepository());
+
+        return $this->registerUserEntity($id, $this->mapper->populate($userData, $newUser));
     }
 
     /**

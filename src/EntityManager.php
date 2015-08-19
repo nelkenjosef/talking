@@ -1,16 +1,18 @@
 <?php
 
 include_once 'repository/User.php';
+include_once 'repository/Post.php';
 include_once 'mapper/User.php';
 
 use Repository\User as UserRepository;
+use Repository\Post as PostRepository;
 use Mapper\User as UserMapper;
 
 /**
  * Entity Manager
  *
  * @author  nelkenjosef <talking@nelkenjosef.de>
- * @version 1.2
+ * @version 1.3
  */
 class EntityManager
 {
@@ -31,6 +33,12 @@ class EntityManager
      * @since 1.0
      */
     private $userRepository;
+
+    /**
+     * @var   \Repository\Post
+     * @since 1.3
+     */
+    private $postRepository;
 
     /**
      * Constructor
@@ -110,5 +118,20 @@ class EntityManager
         }
 
         return $this->userRepository;
+    }
+
+    /**
+     * Returns the Post repository
+     *
+     * @return \Repository\Post
+     * @since  1.3
+     */
+    public function getPostRepository()
+    {
+        if (is_null($this->postRepository)) {
+            $this->postRepository = new PostRepository($this);
+        }
+
+        return $this->postRepository;
     }
 }
