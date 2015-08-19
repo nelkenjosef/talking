@@ -8,7 +8,7 @@ use Repository\User as UserRepository;
  * Entity Manager
  *
  * @author  nelkenjosef <talking@nelkenjosef.de>
- * @version 1.0
+ * @version 1.1
  */
 class EntityManager
 {
@@ -56,6 +56,22 @@ class EntityManager
     public function query($statement)
     {
         return $this->connection->query($statement);
+    }
+
+    /**
+     * Inserts data array into DB
+     *
+     * @param  string $table
+     * @param  array  $data
+     * @return \PDOStatement
+     * @since  1.1
+     */
+    public function insert($table, $data)
+    {
+        $columsString = implode(', ', array_keys($data));
+        $valuesString = implode('", "', $data);
+
+        return $this->query('INSERT INTO ' . $table . ' (' . $columsString . ') VALUES ("' . $valuesString . '");');
     }
 
     /**

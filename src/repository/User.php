@@ -48,13 +48,21 @@ class User
      * @return \Entity\User
      * @since  1.0
      */
-    public function findByOne($id)
+    public function findOneById($id)
     {
         $userData = $this->em
                          ->query('SELECT * FROM users WHERE id = ' . $id)
                          ->fetch();
 
         return $this->mapper->populate($userData, new UserEntity());
+    }
+
+    public function saveUser($user)
+    {
+        $userMapper = new UserMapper();
+        $data = $userMapper->extract($user);
+
+        return $this->em->insert('users', $data);
     }
 
 }

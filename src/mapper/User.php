@@ -6,7 +6,7 @@ namespace Mapper;
  * Mapper for User
  *
  * @author  nelkenjosef <talking@nelkenjosef.de>
- * @version 1.0
+ * @version 1.1
  */
 class User
 {
@@ -14,13 +14,36 @@ class User
      * @var    array
      * @since  1.0
      */
-    private $mapping = [
+    private $mapping = array(
         'id' => 'id',
         'firstName' => 'first_name',
         'lastName' => 'last_name',
         'gender' => 'gender',
         'namePrefix' => 'name_prefix',
-    ];
+    );
+
+    /**
+     * Gets data from given Entity User
+     *
+     * @param  \Entity\User $user
+     * @return array
+     * @since  1.1
+     */
+    public function extract(\Entity\User $user)
+    {
+        $data = array();
+
+        foreach ($this->mapping as $keyObject => $keyColumn) {
+
+            if ('id' != $keyColumn) {
+                $data[$keyColumn] = call_user_func(
+                    array($user, 'get' . ucfirst($keyObject))
+                );
+            }
+        }
+
+        return $data;
+    }
 
     /**
      * Gets data from DB and store in Entity
@@ -37,8 +60,8 @@ class User
         foreach ($data as $key => $value) {
             if (isset($mappingsFlipped[$key])) {
                 call_user_func_array(
-                    [$user, 'set' . ucfirst($mappingsFlipped[$key])],
-                    [$value]
+                    array($user, 'set' . ucfirst($mappingsFlipped[$key])),
+                    array($value)
                 );
             }
         }
