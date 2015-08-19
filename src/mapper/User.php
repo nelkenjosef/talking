@@ -6,7 +6,7 @@ namespace Mapper;
  * Mapper for User
  *
  * @author  nelkenjosef <talking@nelkenjosef.de>
- * @version 1.1
+ * @version 1.2
  */
 class User
 {
@@ -21,6 +21,17 @@ class User
         'gender' => 'gender',
         'namePrefix' => 'name_prefix',
     );
+
+    /**
+     * Returns the index column used in DB
+     *
+     * @return string
+     * @since  1.2
+     */
+    public function getIdColumn()
+    {
+        return 'id';
+    }
 
     /**
      * Gets data from given Entity User

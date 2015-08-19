@@ -1,14 +1,16 @@
 <?php
 
 include_once 'repository/User.php';
+include_once 'mapper/User.php';
 
 use Repository\User as UserRepository;
+use Mapper\User as UserMapper;
 
 /**
  * Entity Manager
  *
  * @author  nelkenjosef <talking@nelkenjosef.de>
- * @version 1.1
+ * @version 1.2
  */
 class EntityManager
 {
@@ -68,10 +70,31 @@ class EntityManager
      */
     public function insert($table, $data)
     {
-        $columsString = implode(', ', array_keys($data));
-        $valuesString = implode('", "', $data);
+        $columns = implode(', ', array_keys($data));
+        $values = implode('", "', $data);
 
-        return $this->query('INSERT INTO ' . $table . ' (' . $columsString . ') VALUES ("' . $valuesString . '");');
+        return $this->query('INSERT INTO ' . $table . ' (' . $columns . ') VALUES ("' . $values . '");');
+    }
+
+    /**
+     * Inserts data array into DB
+     *
+     * @param  string $table
+     * @param  array  $data
+     * @param  int    $id
+     * @param  string $where  default 'id'
+     * @return \PDOStatement
+     * @since  1.2
+     */
+    public function update($table, $data, $id, $where = 'id')
+    {
+        $setString = '';
+
+        foreach ($data as $column => $value) {
+            $setString .= '`' . $column . '` = "' . $value . '", ';
+        }
+
+        return $this->query('UPDATE ' . $table . ' SET ' . substr($setString, 0, -2) . ' WHERE ' . $where . ' = ' . $id . ';');
     }
 
     /**

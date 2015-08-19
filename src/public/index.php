@@ -4,7 +4,7 @@
  * File index.php
  *
  * @author  nelkenjosef <talking@nelkenjosef.de>
- * @version 1.4
+ * @version 1.5
  *
  */
 
@@ -15,11 +15,7 @@ $user = $em->getUserRepository()->findOneById(1);
 
 echo $user->assembleDisplayName() . PHP_EOL;
 
-$newUser = new \Entity\User();
-$newUser->setFirstName('Ute');
-$newUser->setLastName('Mustermann');
-$newUser->setGender(1);
+$user->setFirstName('Moritz');
+$em->getUserRepository()->saveUser($user);
 
-$em->getUserRepository()->saveUser($newUser);
-
-echo $newUser->assembleDisplayName() . PHP_EOL;
+echo $user->assembleDisplayName() . PHP_EOL;
