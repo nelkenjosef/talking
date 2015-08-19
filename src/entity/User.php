@@ -12,38 +12,62 @@ namespace Entity;
 class User
 {
     /**
-     * @var int
+     * @var   int
+     * @since 1.0
      */
     private $id;
 
     /**
-     * @var string
+     * @var   string
+     * @since 1.0
      */
     private $firstName;
 
     /**
-     * @var string
+     * @var   string
+     * @since 1.0
      */
     private $lastName;
 
     /**
-     * @var int
+     * @var   int
+     * @since 1.0
      */
     private $gender;
 
     /**
-     * @var string
+     * @var   string
+     * @since 1.0
      */
     private $namePrefix;
 
+    /**
+     * @var   int
+     * @since 1.0
+     */
     const GENDER_MALE = 0;
-    const GENDER_FEMALE = 0;
 
+    /**
+     * @var  int
+     * @since 1.0
+     */
+    const GENDER_FEMALE = 1;
+
+    /**
+     * @var   string
+     * @since 1.0
+     */
     const GENDER_MALE_DISPLAY_VALUE = 'Mr.';
+
+    /**
+     * @var   string
+     * @since 1.0
+     */
     const GENDER_FEMALE_DISPLAY_VALUE = 'Mrs.';
 
     /**
      * return string
+     * @since 1.0
      */
     public function assembleDisplayName()
     {
@@ -67,6 +91,7 @@ class User
     /**
      * @param  int $id
      * @return void
+     * @since  1.0
      */
     public function setId($id)
     {
@@ -75,6 +100,7 @@ class User
 
     /**
      * @return int
+     * @since  1.0
      */
     public function getId()
     {
@@ -84,6 +110,7 @@ class User
     /**
      * @param  string $firstName
      * @return void
+     * @since  1.0
      */
     public function setFirstName($firstName)
     {
@@ -92,6 +119,7 @@ class User
 
     /**
      * @return string
+     * @since  1.0
      */
     public function getFirstname()
     {
@@ -101,6 +129,7 @@ class User
     /**
      * @param  string $lastName
      * @return void
+     * @since  1.0
      */
     public function setLastName($lastName)
     {
@@ -109,6 +138,7 @@ class User
 
     /**
      * @return string
+     * @since  1.0
      */
     public function getLastName()
     {
@@ -118,6 +148,7 @@ class User
     /**
      * @param  int $gender
      * @return void
+     * @since  1.0
      */
     public function setGender($gender)
     {
@@ -126,6 +157,7 @@ class User
 
     /**
      * @return int
+     * @since  1.0
      */
     public function getGender()
     {
@@ -135,6 +167,7 @@ class User
     /**
      * @param  string $namePrefix
      * @return void
+     * @since  1.0
      */
     public function setNamePrefix($namePrefix)
     {
@@ -143,6 +176,7 @@ class User
 
     /**
      * @return string
+     * @since  1.0
      */
     public function getNamePrefix()
     {
