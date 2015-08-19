@@ -1,9 +1,12 @@
 <?php
+
 namespace Entity;
 
 /**
+ * Entity User
  *
- * @author nelkenjosef <talking@nelkenjosef.de>
+ * @author  nelkenjosef <talking@nelkenjosef.de>
+ * @version 1.0
  *
  */
 class User
