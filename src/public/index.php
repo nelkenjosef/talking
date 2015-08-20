@@ -1,16 +1,18 @@
 <?php
 
 /**
- * File index.php
+ * File /src/public/index.php
  *
  * @author  nelkenjosef <talking@nelkenjosef.de>
- * @version 1.6
+ * @version 1.7
  *
  */
 
-include_once '../EntityManager.php';
+include_once __DIR__ . '/../EntityManager.php';
 
-$em = new EntityManager('../../data/talking.sqlite');
+$dbParams = include __DIR__ . '/../../config/db.config.php';
+
+$em = new EntityManager($dbParams['path']);
 $user = $em->getUserRepository()->findOneById(1);
 
 echo $user->assembleDisplayName() . PHP_EOL;

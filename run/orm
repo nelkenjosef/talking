@@ -1,0 +1,10 @@
+#!/bin/bash
+cd ..
+param=$1
+case $param in
+  info) vendor/bin/doctrine orm:info;vendor/bin/doctrine orm:validate-schema;;
+  create) vendor/bin/doctrine orm:schema-tool:update --force --dump-sql;;
+  check) vendor/bin/doctrine orm:ensure-production-settings;;
+  cache) vendor/bin/doctrine orm:clear-cache:metadata;vendor/bin/doctrine orm:clear-cache:query;vendor/bin/doctrine orm:clear-cache:result;;
+  * ) echo 'params: info, create, check, cache';;
+esac
