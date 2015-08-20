@@ -1,5 +1,11 @@
 #!/bin/bash
-cd ..
+
+MY_PATH="`dirname \"$0\"`"              # relative
+MY_PATH="`( cd \"$MY_PATH\" && pwd )`"  # absolutized and normalized
+
+cd $MY_PATH/..
+echo $PWD
+
 param=$1
 case $param in
   info) vendor/bin/doctrine orm:info;vendor/bin/doctrine orm:validate-schema;;
@@ -8,3 +14,4 @@ case $param in
   cache) vendor/bin/doctrine orm:clear-cache:metadata;vendor/bin/doctrine orm:clear-cache:query;vendor/bin/doctrine orm:clear-cache:result;;
   * ) echo 'params: info, create, check, cache';;
 esac
+
